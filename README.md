@@ -38,7 +38,35 @@ I have 2 options to recommend:
 2. Use <code>Terminus</code> app (or any terminal app) on iPad to connect to Mac via ssh
 
 ### Use <code>Automator</code>
-Please ask AI or Google search, I don't place it here to avoid duplicate content :D 
+1. Open Automator -> Create application -> Drag & drop "Run shell script" -> copy paste below script:
+
+```
+#!/bin/zsh
+pkill -f iPadMonitor
+
+APP_DIR="<path-of-folder-contain-iPadMonitor-file>"
+
+IS_IPAD_PLUGGED=$(system_profiler SPUSBDataType 2>/dev/null | grep -E "(ipad|iPad)")
+
+if [ -z "$IS_IPAD_PLUGGED" ]; then
+    IS_IPAD_PLUGGED=$(ioreg -p IOUSB -w0 2>/dev/null | grep -E "(ipad|iPad)")
+fi
+
+if [ -n "$IS_IPAD_PLUGGED" ]; then
+    sleep 5
+    
+    if [ -f "$APP_DIR/iPadMonitor" ]; then
+        cd "$APP_DIR"
+        nohup ./iPadMonitor -l > /dev/null 2>&1 &
+    fi
+else
+    exit 0
+fi
+```
+
+2. Open "Open at login" in system setting -> add your application you created above to the list
+
+Please ask AI or Google search for more detail, I don't place it here to avoid duplicate content :D 
 
 ### Use <code>Terminus</code>
 1. Download <code>Terminus</code> app on iPad to connect to Mac via ssh
