@@ -1,6 +1,6 @@
 # mac-mini-with-ipad-headless-monitor
-This is simple code to use your iPad as main monitor via Sidecar for your Mac mini without any external screen setup
-It's useful in case you wanna go out with your Mac mini and wanna use iPad as monitor for minimalist setup
+This is simple code to use your iPad as main monitor via Sidecar for your Mac mini without any external screen setup. 
+It's useful in case you wanna go out with your Mac mini and wanna use iPad as monitor for minimalist setup.
 
 ## Install
 
